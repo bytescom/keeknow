@@ -21,8 +21,12 @@ app.get("/login", (req, res) => {
     res.render("login");
 });
 
-app.get('/profile', isLogginIn, (req, res) => {
-    res.send(`Welcome, ${req.user.name}`);
+app.get('/profile', isLogginIn,  async (req, res) => {
+    let user = await User.findOne({ email: req.user.email});
+    console.log(user);
+    
+    
+    res.render("profile", {user});
 });
 
 app.post('/register', async (req, res) => {
