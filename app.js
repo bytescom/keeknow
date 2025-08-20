@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 3001;
 const User = require('./models/User');
-const Posts = require('./models/Posts');
+const Post = require('./models/Post');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -26,28 +26,32 @@ app.get("/login", (req, res) => {
 
 });
 
-app.get('/dashboard', async (req, res) => {
-    // let user = await User.findOne({ email: req.user.email });
-    // user.populate('posts');
-    // console.log(user);
+app.get('/dashboard', isLogginIn, async (req, res) => {
+    let user = await User.findOne({ email: req.user.email });
+    await user.populate("posts");
+    res.render("dashboard", { user });
 
+    // or
+
+    // let user = await User.findById(req.user._id).populate("posts");
+    // console.log(user);
     // res.render("dashboard", { user });
 });
 
-// app.post('/posts', isLogginIn, async (req, res) => {
-//     let user = await User.findOne({ email: req.user.email });
-//     console.log(user);
-    
-//     let { content } = req.body;
-//     let post = await Posts.create({
-//         user: user._id,
-//         content: content,
-//     });
+app.post('/post', isLogginIn, async (req, res) => {
+    let user = await User.findOne({ email: req.user.email });
+    console.log(user);
 
-//     user.posts.push(post._id);
-//     await user.save();
-//     res.redirect("/dashboard");
-// });
+    let { content } = req.body;
+    let post = await Post.create({
+        user: user._id,
+        content: content
+    });
+
+    user.posts.push(post._id);
+    await user.save();
+    res.redirect("/dashboard");
+});
 
 app.post('/signup', async (req, res) => {
     let { name, username, email, password } = req.body;
@@ -103,8 +107,8 @@ app.post('/login', async (req, res) => {
     });
 });
 
-app.get("/logout", (req, res) => {
-    res.cookie("token", "")
+app.post("/logout", (req, res) => {
+    res.cookie("token");
     res.redirect("/login");
 });
 
@@ -118,47 +122,3 @@ function isLogginIn(req, res, next) {
 }
 
 app.listen(PORT);
-
-
-
-// app.post("/login", async (req, res) => {
-//   try {
-//     let { email, password } = req.body;
-
-//     // 1. Find user
-//     let user = await User.findOne({ email });
-//     if (!user) {
-//       return res
-//         .status(401)
-//         .render("login", { error: "Invalid email or password" });
-//     }
-
-//     // 2. Compare password
-//     const isMatch = await bcrypt.compare(password, user.password);
-//     if (!isMatch) {
-//       return res
-//         .status(401)
-//         .render("login", { error: "Invalid email or password" });
-//     }
-
-//     // 3. Create token
-//     let token = jwt.sign(
-//       { email: user.email, userid: user._id },
-//       process.env.JWT_SECRET || "XXXX",
-//       { expiresIn: "1h" } // good practice: expire tokens
-//     );
-
-//     // 4. Set cookie
-//     res.cookie("token", token, {
-//       httpOnly: true, // prevents JS access (security)
-//       secure: process.env.NODE_ENV === "production", // only https in prod
-//       maxAge: 3600000, // 1h
-//     });
-
-//     // 5. Redirect
-//     res.status(200).redirect("/dashboard");
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send("Something went wrong. Please try again.");
-//   }
-// });

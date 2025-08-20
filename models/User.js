@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Posts = require('./Post');
 
 mongoose.connect('mongodb://localhost:27017/keeknow');
 
@@ -7,7 +8,7 @@ const userSchema = mongoose.Schema({
     username: String,
     email: String,
     password: String,
-    posts:[{type: mongoose.Schema.Types.ObjectId, ref:"post"}],
+    posts:[{type: mongoose.Schema.Types.ObjectId, ref:"Post"}],
 })
 
 module.exports = mongoose.model('User', userSchema);
