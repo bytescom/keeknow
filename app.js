@@ -23,7 +23,6 @@ app.get("/signup", (req, res) => {
 
 app.get("/login", (req, res) => {
     res.render("login", { error: null, formData: {} });
-
 });
 
 app.get('/dashboard', isLogginIn, async (req, res) => {

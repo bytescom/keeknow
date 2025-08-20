@@ -4,93 +4,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>KeekNow - Community Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .auth-container {
-            transition: all 0.3s ease;
-        }
-
-        .auth-tab {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .auth-tab.active {
-            background: white;
-            color: #4f46e5;
-            font-weight: 600;
-        }
-
-        .input-error {
-            border-color: #f56565;
-            animation: shake 0.5s ease-in-out;
-        }
-
-        @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-5px);
-            }
-
-            75% {
-                transform: translateX(5px);
-            }
-        }
-
-        .password-toggle {
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .password-toggle:hover {
-            color: #4f46e5;
-        }
-    </style>
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-
-        <header class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-white mb-2">Welcome to KeekNow!</h1>
-            <p class="text-white opacity-90">Sign in or create an account to get started</p>
-        </header>
-
-
-        <div class="max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden auth-container">
-  
-            <div class="flex border-b">
-                <a href="/login" class="w-1/2 text-center py-4 auth-tab active">
-                    <span class="text-lg"><i class="fas fa-sign-in-alt mr-2"></i>Login</span>
-                </a>
-                <a href="/signup" class="w-1/2 text-center py-4 auth-tab bg-gray-100">
-                    <span class="text-lg"><i class="fas fa-user-plus mr-2"></i>Sign Up</span>
-                </a>
+<body class="min-h-screen bg-white">
+    <!-- Header -->
+    <header class="border-b border-gray-200 bg-white/50 backdrop-blur-sm sticky top-0 z-50">
+        <div class="absolute inset-0 -z-10 overflow-hidden">
+            <div class="absolute -top-4 -left-4 w-24 h-24 bg-blue-500/20 rounded-full blur-xl animate-pulse"></div>
+            <div
+                class="absolute -bottom-4 -right-4 w-32 h-32 bg-purple-500/20 rounded-full blur-xl animate-pulse delay-1000">
+            </div>
+            <div
+                class="absolute top-1/2 left-1/4 w-16 h-16 bg-indigo-500/30 rounded-full blur-lg animate-pulse delay-500">
             </div>
         </div>
 
-        <footer class="text-center mt-12 text-white opacity-80">
-            <p>© 2023 KeekNow. All rights reserved.</p>
-        </footer>
-    </div>
+        <div class="container mx-auto py-2">
+            <nav class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div
+                        class="w-8 h-8 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-lg flex items-center justify-center">
+                        <i data-lucide="users" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">KeekNow</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#connect" class="text-blue-600 font-medium hover:text-blue-800 transition-colors">
+                        Connect
+                    </a>
+                    <a href="/login">
+                        <button
+                            class="border border-gray-300 rounded-md px-7 py-3 text-sm hover:bg-gray-50 transition-colors">
+                            LogIn
+                        </button>
+                    </a>
+                    <a href="/signup">
+                        <button
+                            class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 text-white rounded-md px-7 py-3 text-sm hover:from-blue-700 hover:via-purple-700 hover:to-indigo-800 transition-all">
+                            Join Now
+                        </button>
+                    </a>
+                </div>
+                <button class="md:hidden">
+                    <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
 
+    <!-- Hero Section -->
+    <section class="relative py-24 px-4 overflow-hidden">
+        <!-- Gradient Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700"></div>
+
+        <div class="absolute inset-0 opacity-20">
+            <div
+                class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse">
+            </div>
+            <div
+                class="absolute top-40 right-10 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000">
+            </div>
+            <div
+                class="absolute -bottom-8 left-20 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-500">
+            </div>
+            <div
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-2xl animate-pulse delay-700">
+            </div>
+        </div>
+
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-32 left-1/4 w-16 h-16 border-2 border-white rotate-45 animate-spin"
+                style="animation-duration: 20s"></div>
+            <div class="absolute bottom-32 right-1/4 w-12 h-12 bg-white/20 rounded-full animate-bounce"
+                style="animation-delay: 1s"></div>
+            <div class="absolute top-1/2 right-16 w-8 h-8 bg-white/30 transform rotate-45 animate-pulse"></div>
+            <div class="absolute bottom-1/4 left-16 w-6 h-20 bg-white/20 rounded-full animate-pulse"
+                style="animation-delay: 2s"></div>
+        </div>
+
+        <div class="container mx-auto text-center relative z-10">
+            <div class="max-w-5xl mx-auto">
+                <div
+                    class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-white animate-pulse"></i>
+                    <span class="text-white text-sm font-medium">Join 10,000+ community members</span>
+                    <i data-lucide="trending-up" class="w-4 h-4 text-white"></i>
+                </div>
+
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
+                    Connect with Your
+                    <span
+                        class="bg-gradient-to-r from-yellow-300 via-pink-300 to-white bg-clip-text text-transparent animate-pulse block mt-2">
+                        Community
+                    </span>
+                </h1>
+
+                <p class="text-xl md:text-2xl text-white/90 mb-12 leading-relaxed max-w-3xl mx-auto">
+                    Share ideas, discover what's happening around you, and build meaningful connections with neighbors
+                    who
+                    share your interests.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <button
+                        class="text-lg px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 font-semibold rounded-full shadow-2xl hover:shadow-white/25 transition-all duration-300 group flex items-center">
+                        <i data-lucide="zap" class="w-5 h-5 mr-2 group-hover:animate-pulse"></i>
+                        Join Your Community
+                        <i data-lucide="arrow-right"
+                            class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                    <button
+                        class="text-lg px-8 py-4 bg-transparent border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm rounded-full transition-all duration-300 group flex items-center">
+                        <i data-lucide="globe" class="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform"></i>
+                        Explore Features
+                    </button>
+                </div>
+
+                <div class="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 text-white/70">
+                    <div class="flex items-center gap-3">
+                        <div class="flex -space-x-2">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-r from-pink-400 to-red-400 rounded-full border-2 border-white flex items-center justify-center">
+                                <i data-lucide="users" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div
+                                class="w-10 h-10 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full border-2 border-white flex items-center justify-center">
+                                <i data-lucide="message-square" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div
+                                class="w-10 h-10 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full border-2 border-white flex items-center justify-center">
+                                <i data-lucide="calendar" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div
+                                class="w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full border-2 border-white flex items-center justify-center">
+                                <i data-lucide="heart" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm font-medium text-white">Trusted by thousands</div>
+                            <div class="text-xs text-white/60">Active community members</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="flex">
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current animate-pulse"
+                                style="animation-delay: 0s"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current animate-pulse"
+                                style="animation-delay: 0.1s"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current animate-pulse"
+                                style="animation-delay: 0.2s"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current animate-pulse"
+                                style="animation-delay: 0.3s"></i>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current animate-pulse"
+                                style="animation-delay: 0.4s"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-sm font-medium text-white">4.9/5 rating</div>
+                            <div class="text-xs text-white/60">Community satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 px-10 py-3 border-gray-200">
+        <div class="container flex justify-between items-center">
+            <p class="text-sm text-gray-500 font-light ml-10">&copy; 2024 KeekNow. All rights reserved.</p>
+            <div class="flex justify-center gap-4 text-sm text-gray-500">
+                <a href="#"
+                    class="hover:text-blue-600 hover:underline transition-colors duration-300 ease-in-out">About</a>
+                <a href="#"
+                    class="hover:text-blue-600 hover:underline transition-colors duration-300 ease-in-out">Contact</a>
+                <a href="#"
+                    class="hover:text-blue-600 hover:underline transition-colors duration-300 ease-in-out">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 
 </html>
