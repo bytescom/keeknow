@@ -1,11 +1,21 @@
 const express = require('express');
 const app = express();
 const PORT = 3001;
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 const User = require('./models/User');
 const Post = require('./models/Post');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log("MongoDB connected successfully"))
+.catch(err => console.error("MongoDB connection error:", err));
 
 app.set('view engine', 'ejs');
 
@@ -73,7 +83,8 @@ app.post('/signup', async (req, res) => {
                 password: hash,
             })
 
-            let token = jwt.sign({ email: email, userid: user._id }, "bytescom");
+            const jwtSecretKey = process.env.JWT_SECRET;
+            let token = jwt.sign({ email: email, userid: user._id }, jwtSecretKey);
             res.cookie("token", token);
             // res.send("registered")
 
@@ -98,7 +109,7 @@ app.post('/login', async (req, res) => {
 
     bcrypt.compare(password, user.password, function (err, result) {
         if (result) {
-            let token = jwt.sign({ email: email, userid: user._id }, "bytescom");
+            let token = jwt.sign({ email: email, userid: user._id }, process.env.JWT_SECRET);
             res.cookie("token", token);
             res.status(200).redirect('/dashboard')
         }
@@ -114,7 +125,7 @@ app.post("/logout", (req, res) => {
 function isLogginIn(req, res, next) {
     if (req.cookies.token === "") return res.redirect('/login');
     else {
-        let data = jwt.verify(req.cookies.token, "bytescom");
+        let data = jwt.verify(req.cookies.token, process.env.JWT_SECRET);
         req.user = data;
     }
     next();

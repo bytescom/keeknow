@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const Posts = require('./Post');
 
-mongoose.connect('mongodb://localhost:27017/keeknow');
-
 const userSchema = mongoose.Schema({
     name: String,
     username: String,
