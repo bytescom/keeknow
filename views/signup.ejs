@@ -1,115 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up | KeekNow</title>
+  <title>User Registration</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
-<body class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
   <div class="max-w-md w-full">
+
     <!-- Error Message -->
     <% if (error) { %>
-      <div class="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-md flex items-center animate-shake">
-        <i class="fas fa-exclamation-circle mr-3"></i>
-        <span class="text-sm">
-          <%= error %>
-        </span>
+      <div class="mb-6 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded-md shadow-md flex items-center animate-shake">
+        <i class="fas fa-exclamation-circle mr-2"></i>
+        <span><%= error %></span>
       </div>
-      <% } %>
+    <% } %>
 
-        <!-- Registration Card -->
-        <div class="bg-white rounded-xl card-shadow overflow-hidden">
-          <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white text-center">
-            <h1 class="text-2xl font-bold">Create Your Account</h1>
-            <p class="text-blue-100 text-sm mt-2">Join our community today</p>
-          </div>
+    <!-- Registration Card -->
+    <div class="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+      
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 text-white text-center">
+        <h2 class="text-2xl font-bold">Create Account</h2>
+        <p class="text-blue-100 text-sm mt-1">Join our community today</p>
+      </div>
 
-          <!-- Form -->
-          <form action="/signup" method="post" class="p-6 space-y-5">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <i class="fas fa-user text-gray-400"></i>
-                </div>
-                <input type="text" name="name" placeholder="Your full name" value="<%= formData?.name || '' %>" required
-                  class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg input-focus 
-                          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <i class="fas fa-at text-gray-400"></i>
-                </div>
-                <input type="text" name="username" placeholder="Choose a username"
-                  value="<%= formData?.username || '' %>" required class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg input-focus 
-                          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <i class="fas fa-envelope text-gray-400"></i>
-                </div>
-                <input type="email" name="email" placeholder="your.email@example.com"
-                  value="<%= formData?.email || '' %>" required class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg input-focus 
-                          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <i class="fas fa-lock text-gray-400"></i>
-                </div>
-                <input type="password" name="password" id="password" placeholder="Create a strong password" required
-                  class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg input-focus 
-                          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-                  <i class="fas fa-eye-slash password-toggle" id="togglePassword"></i>
-                </div>
-              </div>
-            </div>
-
-            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-3 px-4 
-                       rounded-lg hover:from-blue-700 hover:to-indigo-800 transition-all 
-                       duration-300 flex items-center justify-center font-medium">
-              <i class="fas fa-user-plus mr-2"></i>
-              Create Account
-            </button>
-          </form>
-
-          <!-- Divider -->
-          <div class="px-6">
-            <div class="relative">
-              <div class="absolute inset-0 flex items-center">
-                <div class="w-full border-t border-gray-300"></div>
-              </div>
-              <div class="relative flex justify-center text-sm">
-                <span class="px-2 bg-white text-gray-500">Already have an account?</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Footer -->
-          <div class="px-6 py-5 bg-gray-50 text-center">
-            <a href="/login" class="inline-block w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 
-                  rounded-lg hover:bg-gray-50 transition-colors duration-300 font-medium">
-              Login
-            </a>
-          </div>
+      <!-- Form -->
+      <form action="/signup" method="post" class="p-6 space-y-4">
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Name</label>
+          <input type="text" name="name" placeholder="Your full name" 
+                 value="<%= formData?.name || '' %>" required
+                 class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" />
         </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Username</label>
+          <input type="text" name="username" placeholder="Choose a username" 
+                 value="<%= formData?.username || '' %>" required
+                 class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" name="email" placeholder="Your email address" 
+                 value="<%= formData?.email || '' %>" required
+                 class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" name="password" placeholder="Create a strong password" required
+                 class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <button type="submit" 
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 flex items-center justify-center">
+          <i class="fas fa-user-plus mr-2"></i>
+          Create Account
+        </button>
+      </form>
+
+      <!-- Footer -->
+      <div class="px-6 py-4 bg-gray-50 text-center text-sm text-gray-600">
+        Already have an account? 
+        <a href="/login" class="text-blue-600 font-base hover:underline">Login</a>
+      </div>
+    </div>
   </div>
 </body>
-
 </html>
